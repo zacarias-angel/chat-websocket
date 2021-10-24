@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("template/head")%>
+<body>
+    <%- include("template/nav")%>
+    <div class="container">
+       
+        <h1>hola soy el detalle</h1>
+
+        <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col">nombre</th>
+                <th scope="col">precio</th>
+                <th scope="col">imagen</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% datos.forEach(function(productos){ %>
+               <tr>
+                <td><%= productos.nombre%></td>
+                <td><%= productos.precio%></td>
+                <td> <img style="width: 100px; height: 100px;"   src="../<%= productos.img%>" alt="imagen"> </td>
+              </tr>
+            <% }) %>
+              
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

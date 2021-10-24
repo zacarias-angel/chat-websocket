@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("template/head")%>
+<body>
+   <%- include("template/nav")%>
+
+<div class="container">
+   
+    
+    <div class=" render-carro render-opuesto ">
+      <div class="caja2" ><button class="btn-cerrar "> cerrar </button></div>
+      <div id="caja" class="caja1"> </div>
+      <div>
+        <form onsubmit="return addmsn()" class="tabla-carro" >
+          <input type="text" enabled="disabled" id="nombre" placeholder="nombre">
+          <input type="textarea" id="mensaje" placeholder="texto" cols="" rows="5">
+          <input type="submit" value="enviar">
+      </form>
+      </div>
+  </div>
+  <h1>hola mensaje de prueba</h1>
+    <form class="row g-3" style="display:block" action="/api/product" method="post" enctype="multipart/form-data">
+        <div class="col-12 w-50">
+          <label for="name"  class="form-label">nombre</label>
+          <input type="text" name="nombre" class="form-control" id="inputEmail4">
+        </div>
+        
+        <div class="col-12 w-50">
+            <label for="precio"  class="form-label">precio</label>
+            <input type="number" name="precio" class="form-control" id="inputEmail4">
+          </div>
+          <div class="col-12 w-50">
+            <label for="file" class="form-label">seleccionar archivo</label>
+            <input type="file"  name="img"  class="form-control" id="inputEmail4">
+          </div>
+        
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">agregar</button>
+        </div>
+      </form>
+
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const btncaarrito = document.querySelector(`.btn-render`);
+const btncerr = document.querySelector(`.btn-cerrar`);
+const opuesto =document.querySelector(`.render-opuesto`);
+
+btncaarrito.addEventListener("click" , () =>{
+opuesto.classList.toggle(`render-opuesto`);
+
+
+
+})
+btncerr.addEventListener("click",() =>{
+    opuesto.classList.toggle(`render-opuesto`);
+  
+})
+
+
+
+
+/////  server io
+const socket = io()
+
+socket.on("messaje_back",(data)=>{
+console.log(data)
+render(data)
+socket.emit("messaje_cliente","detras de ecena")
+})
+
+const render = (data)=>{
+    let html = data.map(x =>{
+        return `<p><strong>${x.nombre}</strong> :  ${x.mensaje} </p>`
+    }).join(" ")
+    document.querySelector(".caja1").innerHTML = html
+}
+
+let addmsn = ()=>{
+
+    let objForm = {  
+        nombre : document.querySelector("#nombre").value,
+        mensaje : document.querySelector("#mensaje").value
+    }   
+
+    socket.emit("cliente_form", objForm )
+    nombre : document.querySelector("#nombre").disabled="enabled"
+    mensaje : document.querySelector("#mensaje").value = " "
+    return  false
+}
+</script>
+
+
+</body>
+</html>

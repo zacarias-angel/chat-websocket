@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "angel",
+    "precio": "1212",
+    "img": "upload/acanalada.jpg",
+    "id": 1
+  },
+  {
+    "nombre": "gkhgk",
+    "precio": "123",
+    "img": "upload/amarillo.jpg",
+    "id": 2
+  },
+  {
+    "nombre": "foto",
+    "precio": "3333",
+    "img": "upload/bicolor.jpg",
+    "id": 3
+  },
+  {
+    "nombre": "dffff",
+    "precio": "123",
+    "img": "upload/dorada-14.jpg",
+    "id": 4
+  },
+  {
+    "nombre": "angel",
+    "precio": "88484",
+    "img": "upload/locaal.png",
+    "id": 5
+  }
+]
